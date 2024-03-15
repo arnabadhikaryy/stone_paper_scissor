@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mainbox{
+            background-color: aquamarine;
+            height: 6cm;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        #box1{
+            background-color: azure;
+            height: 3cm;
+            width: 3cm;
+            margin: 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #box2{
+            background-color: azure;
+            height: 3cm;
+            width: 3cm;
+            margin: 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #attack_with{
+            background-color: blanchedalmond;
+            margin: 10px;
+            height: 2cm;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        #stone,#paper,#scissor{
+            background-color: black;
+            color: white;
+            height: 0.8cm;
+            width: 1.5cm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #score_bord{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #scores{
+            display: flex;
+        }
+        #score_for_you,#score_for_computor{
+            margin: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="score_bord">
+        <h3>scorebord</h3>
+        <div id="scores">
+            <div id="score_for_you">you: <h4>0</h4></div>
+            <div id="score_for_computor">computor: <h4>0</h4></div>
+        </div>
+    </div>
+    <div id="mainbox">
+        <div id="box1">you</div>
+        <div id="box2">computor</div>
+    </div>
+
+    <div id="attack_with">
+        <div id="stone">stone</div>
+        <div id="paper">paper</div>
+        <div id="scissor">scissor</div>
+    </div>
+
+    <script>
+        const array=["stron","paper","scissor"];
+        function attack(){
+            index=Math.floor((array)*3);
+            console.log(array[index]);
+        }
+    </script>
+</body>
+</html>
 
