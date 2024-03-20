@@ -79,16 +79,43 @@
     </div>
 
     <div id="attack_with">
-        <div id="stone">stone</div>
-        <div id="paper">paper</div>
-        <div id="scissor">scissor</div>
+        <button id="stone" value="stone" onclick="myattack(this.value),pointcount()">stone</button>
+        <button id="paper" value="paper"  onclick="myattack(this.value)">paper</button>
+        <button id="scissor" value="scissor"  onclick="myattack(this.value)">scissor</button>
     </div>
 
     <script>
+        let yourpoint=0;
+        let computerpoint=0;
         const array=["stron","paper","scissor"];
         function attack(){
-            index=Math.floor((array)*3);
+            index=Math.floor(Math.random()*3);
             console.log(array[index]);
+            document.getElementById("box2").innerHTML=array[index];
+        }
+
+        function myattack(fuk){
+
+            document.getElementById("box1").innerHTML=fuk;
+            attack()
+        }
+
+        function pointcount(){
+           myvalue=document.getElementById("box1").innerHTML;
+           computervalue=document.getElementById("box2").innerHTML;
+
+           if(myvalue=="stron"&&computervalue=="paper"){
+            computerpoint=computerpoint+1;
+            console.log(computerpoint);
+           }
+           else if(myvalue=="stron"&&computervalue=="stron"){
+            console.log("some");
+           }
+           else if(myvalue=="stron"&&computervalue=="scissor"){
+yourpoint=yourpoint+1;
+console.log(yourpoint);
+           }
+
         }
     </script>
 </body>
