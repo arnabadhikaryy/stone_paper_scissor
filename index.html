@@ -63,31 +63,60 @@
         #score_for_you,#score_for_computor{
             margin: 15px;
         }
+        #monitor{
+            background: #000;
+            height: 1.5cm;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #reset{
+            height: 1.5cm;
+            background-color: chartreuse;
+            margin: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #reset button{
+            background-color: coral;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div id="score_bord">
         <h3>scorebord</h3>
         <div id="scores">
-            <div id="score_for_you">you: <h4>0</h4></div>
-            <div id="score_for_computor">computor: <h4>0</h4></div>
+            <div id="score_for_you">you: <h4 id="my_final_point">0</h4></div>
+            <div id="score_for_computor">computor: <h4 id="com_final_point">0</h4></div>
         </div>
     </div>
     <div id="mainbox">
         <div id="box1">you</div>
-        <div id="box2">computor</div>
+        <div id="box2">computer</div>
     </div>
 
     <div id="attack_with">
-        <button id="stone" value="stone" onclick="myattack(this.value),pointcount()">stone</button>
+        <button id="stone" value="stone" onclick="myattack(this.value)">stone</button>
         <button id="paper" value="paper"  onclick="myattack(this.value)">paper</button>
         <button id="scissor" value="scissor"  onclick="myattack(this.value)">scissor</button>
+    </div>
+
+    <div id="monitor">
+        <h1 id="winer_disp">YOUR TARGET IS:-  5</h1>
+    </div>
+
+    <div id="reset">
+        <button onclick="reset()">play again</button>
     </div>
 
     <script>
         let yourpoint=0;
         let computerpoint=0;
-        const array=["stron","paper","scissor"];
+        reset_disp_off();
+        const array=["stone","paper","scissor"];
         function attack(){
             index=Math.floor(Math.random()*3);
             console.log(array[index]);
@@ -95,27 +124,93 @@
         }
 
         function myattack(fuk){
-
             document.getElementById("box1").innerHTML=fuk;
-            attack()
+            attack();
+            pointcount();
+            disp_winer();
         }
+
+
 
         function pointcount(){
            myvalue=document.getElementById("box1").innerHTML;
            computervalue=document.getElementById("box2").innerHTML;
 
-           if(myvalue=="stron"&&computervalue=="paper"){
+           if(myvalue=="stone"&&computervalue=="paper"){
             computerpoint=computerpoint+1;
-            console.log(computerpoint);
+            console.log("computer win "+computerpoint);
+            document.getElementById("com_final_point").innerHTML=computerpoint;
            }
-           else if(myvalue=="stron"&&computervalue=="stron"){
-            console.log("some");
+           else if(myvalue=="stone"&&computervalue=="scissor"){
+            yourpoint=yourpoint+1;
+            console.log("you win "+yourpoint);
+            document.getElementById("my_final_point").innerHTML=yourpoint;
            }
-           else if(myvalue=="stron"&&computervalue=="scissor"){
-yourpoint=yourpoint+1;
-console.log(yourpoint);
+           else if(myvalue=="paper"&&computervalue=="stone"){
+            yourpoint=yourpoint+1;
+            console.log("you win "+yourpoint);
+            document.getElementById("my_final_point").innerHTML=yourpoint;
+           }
+           else if(myvalue=="paper"&&computervalue=="scissor"){
+           computerpoint=computerpoint+1;
+            console.log("computer win "+computerpoint);
+            document.getElementById("com_final_point").innerHTML=computerpoint;
+           }
+           else if(myvalue=="scissor"&&computervalue=="stone"){
+            computerpoint=computerpoint+1;
+            console.log("computer win "+computerpoint);
+            document.getElementById("com_final_point").innerHTML=computerpoint;
+           }
+           else if(myvalue=="scissor"&&computervalue=="paper"){
+           yourpoint=yourpoint+1;
+            console.log("you win "+yourpoint);
+            document.getElementById("my_final_point").innerHTML=yourpoint;
+           }
+           else{
+            console.log("match drow..");
            }
 
+        }
+
+        function disp_winer(){
+            if(yourpoint==5){
+                document.getElementById("winer_disp").innerHTML="Congratulation !! YOU WIN ";
+                button_disp_off();
+            }
+            else if(computerpoint==5){
+                document.getElementById("winer_disp").innerHTML="You loss...";
+                button_disp_off()
+            }
+        }
+
+        function button_disp_off(){
+            document.getElementById('stone').style.display = "none";
+            document.getElementById('paper').style.display = "none";
+            document.getElementById('scissor').style.display = "none";
+            reset_disp_on();
+        }
+        function button_disp_on(){
+            document.getElementById('stone').style.display = "block";
+            document.getElementById('paper').style.display = "block";
+            document.getElementById('scissor').style.display = "block";
+            //reset_disp_on();
+        }
+        function reset_disp_off(){
+            document.getElementById("reset").style.display="none"
+        }
+        function reset_disp_on(){
+            document.getElementById("reset").style.display="block"
+        }
+        function reset(){
+            yourpoint=0;
+            computerpoint=0;
+            document.getElementById("my_final_point").innerHTML=yourpoint;
+            document.getElementById("com_final_point").innerHTML=computerpoint;
+            document.getElementById("winer_disp").innerHTML="YOUR TARGET IS:-  5";
+            document.getElementById("box1").innerHTML="you";
+            document.getElementById("box2").innerHTML="computer";
+            reset_disp_off();
+            button_disp_on();
         }
     </script>
 </body>
