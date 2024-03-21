@@ -99,7 +99,7 @@
     </div>
 
     <div id="attack_with">
-        <button id="stone" value="stone" onclick="myattack(this.value)">stone</button>
+        <button id="stone" value="arnab" onclick="myattack(this.value)">stone</button>
         <button id="paper" value="paper"  onclick="myattack(this.value)">paper</button>
         <button id="scissor" value="scissor"  onclick="myattack(this.value)">scissor</button>
     </div>
@@ -115,8 +115,8 @@
     <script>
         let yourpoint=0;
         let computerpoint=0;
-        reset_disp_off();
-        const array=["stone","paper","scissor"];
+       reset_disp_off();
+        const array=[`<img src="https://w7.pngwing.com/pngs/422/99/png-transparent-rock-paper-scissors-computer-icons-scissors-game-white-face-thumbnail.png" alt="" height="75px">`,`<img src="https://w7.pngwing.com/pngs/588/310/png-transparent-hand-rock-paper-scissors-computer-icons-hand-angle-text-photography-thumbnail.png" alt="" height="75px">`,`<img src="https://media.geeksforgeeks.org/wp-content/uploads/20210705223645/paper.jpeg" alt="" height="75px">`];
         function attack(){
             index=Math.floor(Math.random()*3);
             console.log(array[index]);
@@ -125,9 +125,14 @@
 
         function myattack(fuk){
             document.getElementById("box1").innerHTML=fuk;
-            attack();
+            
+            setTimeout(() => {
+                attack();
             pointcount();
             disp_winer();
+            
+             }, "200");
+           
         }
 
 
@@ -199,7 +204,7 @@
             document.getElementById("reset").style.display="none"
         }
         function reset_disp_on(){
-            document.getElementById("reset").style.display="block"
+            document.getElementById("reset").style.display="flex"
         }
         function reset(){
             yourpoint=0;
